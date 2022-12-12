@@ -1,0 +1,26 @@
+name: ci/cd
+on:
+  push:
+    tags:
+      - '!refs/tags/*'
+    branches:
+      - '*'
+jobs:
+  test_build:
+    runs-on: [ubuntu-latest]
+    steps:
+      - uses: actions/checkout@master
+      - uses: actions/setup-python@v1
+        with:
+          python-version: '3.8'
+          architecture: 'x64'
+      - name: proces
+        run: pip freeze > requirements.txt
+      - name: requirements
+        run: pip install -r requirements.txt
+      - name: reporter
+        run: pip install coverage
+      - name: r_tests
+        run: coverage run test.py
+      - name: Tests
+        run: coverage report
