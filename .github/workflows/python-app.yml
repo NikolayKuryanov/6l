@@ -21,6 +21,6 @@ jobs:
       - name: reporter
         run: pip install coverage
       - name: r_tests
-        run: coverage run test.py
+        run: coverage run tests.py
       - name: Tests
         run: coverage report
